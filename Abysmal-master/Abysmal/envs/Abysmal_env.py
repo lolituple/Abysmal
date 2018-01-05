@@ -14,7 +14,7 @@ from PIL import Image, ImageTk
 RE_WAIT=1
 RE_OVERFLOW=1
 RE_ROUND=0.5
-Num_num=50
+Num_num=1
 
 dir_str=os.path.dirname(os.path.realpath(__file__))+'/mnist.npz'
 f = np.load(dir_str)
