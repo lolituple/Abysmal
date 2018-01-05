@@ -159,13 +159,15 @@ class AbysmalEnv(gym.Env):
         return random.randint(1,9)
     
     def _render(self, mode='human', close=False):
+        '''
         state=np.zeros((28,56))
         state[:,0:28]=Num[self.num1][self.num1_pic]
         state[:,28:56]=Num[self.num2][self.num2_pic]
         cv2.imshow("Image", state)
-        cv2.waitKey()
         cv2.destroyAllWindows()
-    
+        '''
+        print('Num1=%d Num2=%d',%(self.num1,self.num2))
+
     def _reset(self):
         self.__init__()
         return self.CreateState()
