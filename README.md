@@ -1,7 +1,7 @@
 # Abysmal
 
 #example
-
+```python
 import gym
 import Abysmal
 import time
@@ -21,3 +21,4 @@ for _ in range(500):
         env.reset()
 
 
+```
