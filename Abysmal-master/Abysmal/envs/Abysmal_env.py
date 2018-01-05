@@ -166,7 +166,7 @@ class AbysmalEnv(gym.Env):
         cv2.imshow("Image", state)
         cv2.destroyAllWindows()
         '''
-        print('Num1=%d Num2=%d',%(self.num1,self.num2))
+        print('Num1=',self.num1,'Num2=',self.num2)
 
     def _reset(self):
         self.__init__()
