@@ -153,8 +153,8 @@ class AbysmalEnv(gym.Env):
     #def _seed(self,A):
 
     def GetPic(self):
-        self.num1_pic=random.randint(0,49)
-        self.num2_pic=random.randint(0,49)
+        self.num1_pic=random.randint(0,Num_num-1)
+        self.num2_pic=random.randint(0,Num_num-1)
     def Ran(self):
         return random.randint(1,9)
     
