@@ -1,0 +1,27 @@
+1. 
+
+RE_WAIT=0.5
+RE_OVERFLOW=2
+RE_ROUND=0.1
+Num_num=?
+
+最优解是7.39
+直接用one hot 能到达7.0左右的解
+
+2.
+
+RE_WAIT=0.5
+RE_OVERFLOW=2
+RE_ROUND=0.1
+Num_num=1
+
+一幅图片CNN，勉强能到6.0
+
+3.
+RE_WAIT=0.5
+RE_OVERFLOW=2
+RE_ROUND=0.1
+Num_num=50
+
+与(2)差不多，效果差0.1~0.2左右
+
