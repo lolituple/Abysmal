@@ -147,8 +147,8 @@ class AbysmalEnv(gym.Env):
         self.GetPic()
         
         self.action_space = spaces.Discrete(3)
-        self.observation_space = spaces.Box(0, 256, [28,28,2])
-        #self.observation_space = spaces.Box(0, 256, [20])
+        #self.observation_space = spaces.Box(0, 256, [28,28,2])
+        self.observation_space = spaces.Box(0, 256, [20])
         super(AbysmalEnv, self).__init__()
     
     #def _seed(self,A):
@@ -175,6 +175,7 @@ class AbysmalEnv(gym.Env):
     #def _close(self):
 
     def CreateState(self):
+        '''
         state=np.zeros((28,28,2))
         state[:,:,0]=Num[self.num1][self.num1_pic]
         state[:,:,1]=Num[self.num2][self.num2_pic]
@@ -184,7 +185,6 @@ class AbysmalEnv(gym.Env):
         state[self.num1+0]=1
         state[self.num2+10]=1
         return state
-        '''
         
     def _step(self,actions):
         done=0
