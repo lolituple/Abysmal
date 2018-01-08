@@ -25,3 +25,16 @@ Num_num=50
 
 与(2)差不多，效果差0.1~0.2左右
 
+4.
+RE_WAIT=0.5
+RE_OVERFLOW=2
+RE_ROUND=0.1
+Num_num=50
+只出9，能到8.8左右。说明能在50张图片中分清楚0和9。
+
+5.
+RE_WAIT=0.5
+RE_OVERFLOW=2
+RE_ROUND=0.1
+Num_num=50
+只出1，收敛到6.1。每次加1最后爆了。
