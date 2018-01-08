@@ -148,7 +148,7 @@ class AbysmalEnv(gym.Env):
         
         self.action_space = spaces.Discrete(3)
         #self.observation_space = spaces.Box(0, 256, [28,28,2])
-        self.observation_space = spaces.Box(0, 256, [10,2])
+        self.observation_space = spaces.Box(0, 256, [20])
         super(AbysmalEnv, self).__init__()
     
     #def _seed(self,A):
@@ -181,9 +181,9 @@ class AbysmalEnv(gym.Env):
         state[:,:,1]=Num[self.num2][self.num2_pic]
         return state
         '''
-        state=np.zeros((10,2))
-        state[self.num1][0]=1
-        state[self.num2][1]=1
+        state=np.zeros((20))
+        state[self.num1+0]=1
+        state[self.num2+10]=1
         return state
         
     def _step(self,actions):
