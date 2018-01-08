@@ -11,9 +11,9 @@ else:
     import tkinter as tk
 from PIL import Image, ImageTk
 
-RE_WAIT=1
-RE_OVERFLOW=1
-RE_ROUND=0.5
+RE_WAIT=0.5
+RE_OVERFLOW=2
+RE_ROUND=0.1
 Num_num=1
 
 dir_str=os.path.dirname(os.path.realpath(__file__))+'/mnist.npz'
