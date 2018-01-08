@@ -158,7 +158,7 @@ class AbysmalEnv(gym.Env):
         self.num2_pic=random.randint(0,Num_num-1)
     def Ran(self):
         #return random.randint(1,9)
-        return 1    
+        return 9    
     def _render(self, mode='human', close=False):
         '''
         state=np.zeros((28,56))
