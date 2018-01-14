@@ -12,9 +12,7 @@ else:
 from PIL import Image, ImageTk
 
 RE_OVERFLOW=2
-RE_ROUND=0.1
 Num_num=50
-LOSE_ALL=1
 
 dir_str=os.path.dirname(os.path.realpath(__file__))+'/mnist.npz'
 f = np.load(dir_str)
@@ -94,18 +92,19 @@ class AbysmalEnv(gym.Env):
         done=0
         reward=0
         
-        RE_OVERFLOW=max(1-(self.iter_num/200.0),0)
+        BAD_END=max(1-(self.iter_num/200.0),0)
+        HAPPY_END=max(1-(self.iter_num/200.0),0)
         
         if(actions==0):
             if(self.num1+self.num2>9):
                 done=1
-                reward=RE_OVERFLOW*self.num2
+                reward=BAD_END*self.num2-RE_OVERFLOW
             else:
                 self.num2+=self.num1
-                reward-=RE_ROUND
+                #reward-=RE_ROUND
                 self.num1=self.Ran()
         if(actions==1):
-            reward=self.num2+100
+            reward=self.num2+HAPPY_END
             done=1
         self.GetPic()
         return (self.CreateState(),reward,done,{})
