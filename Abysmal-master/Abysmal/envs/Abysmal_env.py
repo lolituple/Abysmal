@@ -96,8 +96,8 @@ class AbysmalEnv(gym.Env):
         done=0
         reward=0
         
-        BAD_END=max(1-(self.iter_num/200.0),0)
-        HAPPY_END=max(0-(self.iter_num/200.0),0)
+        BAD_END=max(0.5-(self.iter_num/100.0),0)
+        HAPPY_END=max(0-(self.iter_num/100.0),0)
         
         if(actions==0):
             if(self.num1+self.num2>9):
