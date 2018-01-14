@@ -11,7 +11,6 @@ else:
     import tkinter as tk
 from PIL import Image, ImageTk
 
-RE_WAIT=0.5
 RE_OVERFLOW=2
 RE_ROUND=0.1
 Num_num=50
@@ -43,7 +42,7 @@ class AbysmalEnv(gym.Env):
         self.avg_reward=0
         self.avg_gamelen=0
         
-        self.action_space = spaces.Discrete(3)
+        self.action_space = spaces.Discrete(2)
         self.observation_space = spaces.Box(0, 256, [28,28,1])
         #self.observation_space = spaces.Box(0, 256, [20])
         super(AbysmalEnv, self).__init__()
@@ -105,11 +104,7 @@ class AbysmalEnv(gym.Env):
                 self.num2+=self.num1
                 reward-=RE_ROUND
                 self.num1=self.Ran()
-                
         if(actions==1):
-            reward-=RE_WAIT
-            self.num1=self.Ran()
-        if(actions==2):
             reward=self.num2
             done=1
         self.GetPic()
