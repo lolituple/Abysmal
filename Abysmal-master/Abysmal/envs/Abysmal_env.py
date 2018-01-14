@@ -15,6 +15,7 @@ RE_WAIT=0.5
 RE_OVERFLOW=2
 RE_ROUND=0.1
 Num_num=50
+LOSE_ALL=1
 
 dir_str=os.path.dirname(os.path.realpath(__file__))+'/mnist.npz'
 f = np.load(dir_str)
@@ -199,6 +200,8 @@ class AbysmalEnv(gym.Env):
                 done=1
                 reward-=RE_OVERFLOW
                 reward+=self.num2
+                if(LOSE_ALL==1):
+                    reward=0
             else:
                 self.num2+=self.num1
                 reward-=RE_ROUND
