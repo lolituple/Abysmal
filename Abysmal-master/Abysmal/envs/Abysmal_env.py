@@ -147,6 +147,11 @@ class AbysmalEnv(gym.Env):
         self.num2=0
         self.GetPic()
         
+        self.pro_id=0
+        self.iter_num=0
+        self.avg_reward=0
+        self.avg_gamelen=0
+        
         self.action_space = spaces.Discrete(3)
         self.observation_space = spaces.Box(0, 256, [28,28,1])
         #self.observation_space = spaces.Box(0, 256, [20])
@@ -199,7 +204,7 @@ class AbysmalEnv(gym.Env):
         done=0
         reward=0
         
-        RE_OVERFLOW=max(1-(iter_num/200.0),0)
+        RE_OVERFLOW=max(1-(self.iter_num/200.0),0)
         
         if(actions==0):
             if(self.num1+self.num2>9):
