@@ -29,115 +29,6 @@ for i in range(10):
     id=np.random.permutation(id)
     id=id[0:Num_num]
     Num[i,:]=x_train[id]
-class Viewer(tk.Tk):
-
-    def __init__(self, evn):
-        self.evn=evn
-        super(Viewer, self).__init__()
-        self.origin = np.array([20, 20])
-
-        dir_str=os.path.dirname(os.path.realpath(__file__))+'/'
-        self.walls_image=ImageTk.PhotoImage(Image.open(dir_str+'walls.png'))
-        self.boxes_image=ImageTk.PhotoImage(Image.open(dir_str+'boxes.png'))
-        self.item_fig={}
-        self.item_fig['*']=ImageTk.PhotoImage(resize(Image.open(dir_str+'item1.png')))
-        self.item_fig['^']=ImageTk.PhotoImage(resize(Image.open(dir_str+'item2.png')))
-        self.bomb_pic=ImageTk.PhotoImage(resize(Image.open(dir_str+'bomb.png')))
-        self.player0_pic=ImageTk.PhotoImage(resize(Image.open(dir_str+'player0.png')))
-        self.player1_pic=ImageTk.PhotoImage(resize(Image.open(dir_str+'player1.png')))
-
-        self.canvas = tk.Canvas(self, bg='white',
-                           height=MAZE_H * UNIT,
-                           width=MAZE_W * UNIT)
-
-        self.init_image()
-        
-    def Text(self,xy,v):
-        t=self.canvas.create_text(xy[0]*UNIT+20,xy[1]*UNIT+8,anchor='center',text=str(v))
-        return t
-    def render(self):
-        self.reset()
-        self.title('Crazy Arcade')
-        self.geometry('{0}x{1}'.format(MAZE_W * UNIT, MAZE_H * UNIT))
-        
-        
-        self.update()
-    
-    def init_image(self):
-        self.maze=self.evn.maze
-        self.players=self.evn.players
-        self.players[0].fig=self.player0_pic
-        self.players[1].fig=self.player1_pic
-        self.inpulse=self.evn.inpulse
-        self.boxes_xyk=self.evn.boxes_xyk
-        #self.bombs_data
-        #self.bombs_xy
-
-        # create grids
-        for c in range(0, MAZE_W * UNIT, UNIT):
-            x0, y0, x1, y1 = c, 0, c, MAZE_H * UNIT
-            self.canvas.create_line(x0, y0, x1, y1)
-        for r in range(0, MAZE_H * UNIT, UNIT):
-            x0, y0, x1, y1 = 0, r, MAZE_W * UNIT, r
-            self.canvas.create_line(x0, y0, x1, y1)
-        
-        # create origin
-        origin = self.origin
-        
-        #create wall,box,item,bombs
-        boxes_xy=[]
-        for box in self.boxes_xyk:
-            boxes_xy.append((box[0],box[1]))
-        for x in range(0,MAZE_W):
-            for y in range(0,MAZE_H):
-                if (self.maze[x][y]=='#'):
-                    wall_now = origin*2 + np.array([UNIT*x+2, UNIT*y+2])
-                    self.walls = self.canvas.create_image(wall_now[0],
-                        wall_now[1], anchor='se',
-                        image=self.walls_image)
-                position = self.origin*2 + np.array([UNIT*x+2, UNIT*y+2])
-                if (x,y) in boxes_xy:
-                    self.canvas.create_image(position[0],
-                        position[1], anchor='se',
-                        image=self.boxes_image)
-                else:
-                    if(self.maze[x][y] in ['*','^']):
-                        self.canvas.create_image(position[0],
-                            position[1], anchor='se',
-                            image=self.item_fig[self.maze[x][y]])
-                if (x,y) in self.evn.bombs_xy:
-                    self.canvas.create_image(origin[0]+x*UNIT,origin[1]+y*UNIT, anchor='center', image=self.bomb_pic)
-        
-        # create players
-        for player_id in range(2):
-            xy_now=self.players[player_id].xy
-            player_now = origin + np.array([UNIT*xy_now[0], UNIT*xy_now[1]])
-            self.players[player_id].players = self.canvas.create_image(player_now[0], \
-                player_now[1], anchor='center', \
-                image=self.players[player_id].fig)
-            
-        #create inpulse
-        for i in range(MAZE_W):
-            for j in range(MAZE_H):
-                if(self.inpulse[i][j]==1):
-                    position = self.origin + np.array([UNIT*i, UNIT*j])
-                    
-                    self.inpulse.append(self.canvas.create_rectangle(
-                    position[0] - 10, position[1] - 10,
-                    position[0] + 10, position[1] + 10,
-                    fill="#FF4444"))
-
-        # create text for bombs
-        for i in range(self.evn.bombs_cnt):
-            self.Text(self.evn.bombs_xy[i],self.evn.bombs_data[i][0])
-        
-        # pack all
-        self.canvas.pack()
-        
-    def reset(self):
-        self.canvas.delete("all")
-        self.init_image()
-    
         
 class AbysmalEnv(gym.Env):
     metadata = {'render.modes': ['human']}
@@ -157,11 +48,11 @@ class AbysmalEnv(gym.Env):
         #self.observation_space = spaces.Box(0, 256, [20])
         super(AbysmalEnv, self).__init__()
     
-    def _seed(self,pro_id_,iter_num_,avg_reward_,avg_gamelen_):
-        self.pro_id=pro_id_
-        self.iter_num=iter_num_
-        self.avg_reward=avg_reward_
-        self.avg_gamelen=avg_gamelen_
+    def _seed(self,A):
+        self.pro_id=A[0]
+        self.iter_num=A[1]
+        self.avg_reward=A[2]
+        self.avg_gamelen=A[3]
         
     def GetPic(self):
         self.num1_pic=random.randint(0,Num_num-1)
