@@ -63,7 +63,7 @@ class AbysmalEnv(gym.Env):
                 return i+1
         return 9
         '''
-        return random.randint(9,9)
+        return random.randint(8,9)
     
     def _render(self, mode='human', close=False):
         '''
