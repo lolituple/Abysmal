@@ -57,11 +57,11 @@ class AbysmalEnv(gym.Env):
     def Ran(self):
         #return random.randint(1,9)
         '''
+        '''
         for i in range(9):
             o=random.randint(0,1)
             if(o==0):
                 return i+1
-        '''
         return 9
     def _render(self, mode='human', close=False):
         '''
