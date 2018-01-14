@@ -152,8 +152,12 @@ class AbysmalEnv(gym.Env):
         #self.observation_space = spaces.Box(0, 256, [20])
         super(AbysmalEnv, self).__init__()
     
-    #def _seed(self,A):
-
+    def _seed(self,pro_id_,iter_num_,avg_reward_,avg_gamelen_):
+        self.pro_id=pro_id_
+        self.iter_num=iter_num_
+        self.avg_reward=avg_reward_
+        self.avg_gamelen=avg_gamelen_
+        
     def GetPic(self):
         self.num1_pic=random.randint(0,Num_num-1)
         self.num2_pic=random.randint(0,Num_num-1)
@@ -195,13 +199,12 @@ class AbysmalEnv(gym.Env):
         done=0
         reward=0
         
+        RE_OVERFLOW=max(1-(iter_num/200.0),0)
+        
         if(actions==0):
             if(self.num1+self.num2>9):
                 done=1
-                reward-=RE_OVERFLOW
-                reward+=self.num2
-                if(LOSE_ALL==1):
-                    reward=0
+                reward=RE_OVERFLOW*self.num2
             else:
                 self.num2+=self.num1
                 reward-=RE_ROUND
