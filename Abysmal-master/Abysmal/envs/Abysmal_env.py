@@ -56,10 +56,12 @@ class AbysmalEnv(gym.Env):
         self.num2_pic=random.randint(0,Num_num-1)
     def Ran(self):
         #return random.randint(1,9)
+        '''
         for i in range(9):
             o=random.randint(0,1)
             if(o==0):
                 return i+1
+        '''
         return 9
     def _render(self, mode='human', close=False):
         '''
@@ -92,8 +94,8 @@ class AbysmalEnv(gym.Env):
         done=0
         reward=0
         
-        BAD_END=max(1-(self.iter_num/200.0),0)
-        HAPPY_END=max(1-(self.iter_num/200.0),0)
+        BAD_END=max(1-(self.iter_num/100.0),0)
+        HAPPY_END=max(1-(self.iter_num/100.0),0)
         
         if(actions==0):
             if(self.num1+self.num2>9):
