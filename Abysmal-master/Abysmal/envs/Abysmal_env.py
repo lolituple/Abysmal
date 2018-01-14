@@ -105,7 +105,7 @@ class AbysmalEnv(gym.Env):
                 reward-=RE_ROUND
                 self.num1=self.Ran()
         if(actions==1):
-            reward=self.num2
+            reward=self.num2+100
             done=1
         self.GetPic()
         return (self.CreateState(),reward,done,{})
