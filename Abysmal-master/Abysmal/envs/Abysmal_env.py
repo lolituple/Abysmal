@@ -147,7 +147,7 @@ class AbysmalEnv(gym.Env):
         self.GetPic()
         
         self.action_space = spaces.Discrete(3)
-        self.observation_space = spaces.Box(0, 256, [28,28,2])
+        self.observation_space = spaces.Box(0, 256, [28,28,1])
         #self.observation_space = spaces.Box(0, 256, [20])
         super(AbysmalEnv, self).__init__()
     
