@@ -118,6 +118,8 @@ class AbysmalEnv(gym.Env):
         if(actions==1):
             reward=self.num2+HAPPY_END
             done=1
+        if(done==1):
+            print("reward= ",reward)
         self.GetPic()
         return (self.CreateState(),reward,done,{})
         
