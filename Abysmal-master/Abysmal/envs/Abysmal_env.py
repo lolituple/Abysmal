@@ -57,7 +57,7 @@ class AbysmalEnv(gym.Env):
         self.num1_pic=random.randint(0,Num_num-1)
         self.num2_pic=random.randint(0,Num_num-1)
     def Ran(self):
-        return random.randint(5,9)
+        return random.randint(4,9)
         '''
         for i in range(9):
             o=random.randint(0,1)
