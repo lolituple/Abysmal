@@ -2,6 +2,7 @@ import os
 import numpy as np
 import gym
 import random
+import math
 import sys
 import cv2
 from gym import spaces
@@ -30,15 +31,16 @@ for i in range(10):
 class AbysmalEnv(gym.Env):
     metadata = {'render.modes': ['human']}
     viewer=None
+    iter_num=0
     def __init__(self):
+        self.pro_id=0
+        self.avg_gamelen=0
+        self.avg_reward=0
+        
         self.num1=self.Ran()
         self.num2=0
         self.GetPic()
         
-        self.pro_id=0
-        self.iter_num=0
-        self.avg_reward=0
-        self.avg_gamelen=0
         
         self.action_space = spaces.Discrete(2)
         self.observation_space = spaces.Box(0, 256, [28,28,1])
@@ -55,15 +57,21 @@ class AbysmalEnv(gym.Env):
         self.num1_pic=random.randint(0,Num_num-1)
         self.num2_pic=random.randint(0,Num_num-1)
     def Ran(self):
-        #return random.randint(1,9)
+        return random.randint(5,9)
         '''
         for i in range(9):
             o=random.randint(0,1)
             if(o==0):
                 return i+1
         return 9
+        #return random.randint(8,9)
+        #tmp=int(self.iter_num*math.log(self.iter_num+1)/400.0)
+        tmp=int(self.iter_num*self.iter_num/1600.0)
+        #print(self.iter_num*math.log(self.iter_num+1))
+        if(tmp%2==0):
+            return 8
+        return 9
         '''
-        return random.randint(8,9)
     
     def _render(self, mode='human', close=False):
         '''
