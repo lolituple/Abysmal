@@ -12,7 +12,7 @@ else:
     import tkinter as tk
 from PIL import Image, ImageTk
 
-RE_OVERFLOW=2
+RE_OVERFLOW=0
 Num_num=1
 
 dir_str=os.path.dirname(os.path.realpath(__file__))+'/mnist.npz'
@@ -104,7 +104,7 @@ class AbysmalEnv(gym.Env):
         done=0
         reward=0
         
-        BAD_END=max(0.5-(self.iter_num/100.0),0)
+        BAD_END=max(0-(self.iter_num/100.0),0)
         HAPPY_END=max(0-(self.iter_num/100.0),0)
         
         if(actions==0):
