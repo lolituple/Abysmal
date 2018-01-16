@@ -57,13 +57,14 @@ class AbysmalEnv(gym.Env):
         self.num1_pic=random.randint(0,Num_num-1)
         self.num2_pic=random.randint(0,Num_num-1)
     def Ran(self):
-        return random.randint(4,9)
-        '''
+        #return random.randint(1,9)
+        
         for i in range(9):
             o=random.randint(0,1)
             if(o==0):
                 return i+1
         return 9
+        '''
         #return random.randint(8,9)
         #tmp=int(self.iter_num*math.log(self.iter_num+1)/400.0)
         tmp=int(self.iter_num*self.iter_num/1600.0)
